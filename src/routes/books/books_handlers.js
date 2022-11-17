@@ -65,6 +65,17 @@ const addBookHandler = (req, h) => {
   return response;
 };
 
+const fetchAllBooksHandler = () => ({
+  status: 'success',
+  data: {
+    books: books.map((e) => {
+      const {id, name, publisher} = e;
+
+      return {id, name, publisher};
+    }),
+  },
+});
+
 export {
-  addBookHandler,
+  addBookHandler, fetchAllBooksHandler,
 };

@@ -13,7 +13,7 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 <h1 align="center">Task Summary</h1>
 
 - [x] API can store books ( **POST /books with JSON req body** )
-- [ ] API can fetch all books ( **GET /books** )
+- [x] API can fetch all books ( **GET /books** )
 - [ ] API can fetch book detail ( **GET /books/{bookId}** )
 - [ ] API can change book data ( **PUT /books/{bookId}** )
 - [ ] API can delete book data ( **DELETE /books/{bookId}** )
