@@ -1,0 +1,22 @@
+{
+  "name": "bookshelf-api",
+  "version": "1.0.0",
+  "description": "Submission project task from dicoding.com beginner back-end class",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./src/server.js",
+    "lint": "eslint ./src"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^21.0.0",
+    "nanoid": "^4.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.20"
+  }
+}
