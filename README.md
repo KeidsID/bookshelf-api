@@ -10,8 +10,6 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 
 [Postman collection and environment][postmantest] for testing this API
 
-</br>
-
 <h1 align="center">Task Summary</h1>
 
 - [x] API can store books ( **POST /books with JSON req body** )
@@ -19,8 +17,6 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 - [ ] API can fetch book detail ( **GET /books/{bookId}** )
 - [ ] API can change book data ( **PUT /books/{bookId}** )
 - [ ] API can delete book data ( **DELETE /books/{bookId}** )
-
-</br>
 
 <h1 align="center">Task Detail</h1>
 
@@ -123,8 +119,6 @@ Properties not contained in the response body are created on the server:
   }
 }
 ```
-
-</br>
 
 ## **2. API can fetch all books**
 
