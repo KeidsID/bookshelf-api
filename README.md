@@ -10,14 +10,26 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 
 [Postman collection and environment][postmantest] for testing this API
 
-# **Task**
+</br>
 
-## 1. API can store books
+<h1 align="center">Task Summary</h1>
 
-The API you create should be able to store books via route:
+- [x] API can store books ( **POST /books with JSON req body** )
+- [ ] API can fetch all books ( **GET /books** )
+- [ ] API can fetch book detail ( **GET /books/{bookId}** )
+- [ ] API can change book data ( **PUT /books/{bookId}** )
+- [ ] API can delete book data ( **DELETE /books/{bookId}** )
 
-- Method: POST
-- Url: /books
+</br>
+
+<h1 align="center">Task Detail</h1>
+
+## **1. API can store books**
+
+The API you create should be able to store books via the following route:
+
+- Method: **POST**
+- URL: **/books**
 - Request body:
 
 ```json
@@ -63,7 +75,7 @@ Properties not contained in the response body are created on the server:
 
 - The client does not attach the **name** property to the **request body**. When this happens, the server responds with:
 
-  - Status Code: 400
+  - Status Code: **400**
   - Response Body:
 
 ```json
@@ -75,7 +87,7 @@ Properties not contained in the response body are created on the server:
 
 - The client attaches the **value of the readPage** property which is **greater than** the **value of the pageCount** property. When this happens, the server responds with:
 
-  - Status Code: 400
+  - Status Code: **400**
   - Response Body:
 
 ```json
@@ -87,7 +99,7 @@ Properties not contained in the response body are created on the server:
 
 - The server failed to load the book for a common reason (generic error). When this happens, the server responds with:
 
-  - Status Code: 500
+  - Status Code: **500**
   - Response Body:
 
 ```json
@@ -99,7 +111,7 @@ Properties not contained in the response body are created on the server:
 
 - When the book is entered successfully, the server should return a response with:
 
-  - Status Code: 201
+  - Status Code: **201**
   - Response Body:
 
 ```json
@@ -109,5 +121,177 @@ Properties not contained in the response body are created on the server:
   "data": {
     "bookId": "1L7ZtDUFeGs7VlEt"
   }
+}
+```
+
+</br>
+
+## **2. API can fetch all books**
+
+The API you create should be able to fetch all books at server via the following route:
+
+- Method: **GET**
+- URL: **/books**
+
+### Expected response:
+
+- Status Code: **200**
+- Response Body:
+
+```json
+{
+  "status": "success",
+  "data": {
+    "books": [
+      {
+        "id": "Qbax5Oy7L8WKf74l",
+        "name": "Buku A",
+        "publisher": "Dicoding Indonesia"
+      },
+      {
+        "id": "1L7ZtDUFeGs7VlEt",
+        "name": "Buku B",
+        "publisher": "Dicoding Indonesia"
+      },
+      {
+        "id": "K8DZbfI-t3LrY7lD",
+        "name": "Buku C",
+        "publisher": "Dicoding Indonesia"
+      }
+    ]
+  }
+}
+```
+
+## **3. API can fetch book detail**
+
+The API you create should be able to fetch specific book by **id** via the following route:
+
+- Method: **GET**
+- URL: **/books/{bookId}**
+
+### Expected response:
+
+- If the book with the **id** attached by the client is **not found**, then the server should return a response with:
+  - Status Code: **404**
+  - Response Body:
+
+```json
+{
+  "status": "fail",
+  "message": "Buku tidak ditemukan"
+}
+```
+
+- When a book with an attached **id is found**, then the server should return a response with:
+  - Status Code: **200**
+  - Response Body:
+
+```json
+{
+  "status": "success",
+  "data": {
+    "book": {
+      "id": "aWZBUW3JN_VBE-9I",
+      "name": "Buku A Revisi",
+      "year": 2011,
+      "author": "Jane Doe",
+      "summary": "Lorem Dolor sit Amet",
+      "publisher": "Dicoding",
+      "pageCount": 200,
+      "readPage": 26,
+      "finished": false,
+      "reading": false,
+      "insertedAt": "2021-03-05T06:14:28.930Z",
+      "updatedAt": "2021-03-05T06:14:30.718Z"
+    }
+  }
+}
+```
+
+## **4. API can change book data**
+
+The API you create should be able to modify book data by **id** via the following route:
+
+- Method : **PUT**
+- URL : **/books/{bookId}**
+- Body Request:
+
+```json
+{
+  "name": string,
+  "year": number,
+  "author": string,
+  "summary": string,
+  "publisher": string,
+  "pageCount": number,
+  "readPage": number,
+  "reading": boolean
+}
+```
+
+### Expected response:
+
+- The client **does not attach the name** property to the request body. When this happens, the server responds with:
+  - Status Code: **400**
+  - Response Body:
+
+```json
+{
+  "status": "fail",
+  "message": "Gagal memperbarui buku. Mohon isi nama buku"
+}
+```
+
+- The client attaches the **value of the readPage** property which is **greater than** the **value of the pageCount** property. When this happens, the server responds with:
+  - Status Code: **400**
+  - Response Body:
+
+```json
+{
+  "status": "fail",
+  "message": "Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount"
+}
+```
+
+- When the book is updated successfully, the server should return a response with:
+  - Status Code: **200**
+  - Response Body:
+
+```json
+{
+  "status": "success",
+  "message": "Buku berhasil diperbarui"
+}
+```
+
+## **5. API can delete book data**
+
+The API you create should be able to delete books by id via the following route:
+
+- Method : **DELETE**
+- URL : **/books/{bookId}**
+
+### Expected response:
+
+- If the attached **id is not found** at server, then the server should return the following response:
+  - Status Code: **404**
+  - Response Body:
+
+```json
+{
+  "status": "fail",
+  "message": "Buku gagal dihapus. Id tidak ditemukan"
+}
+```
+
+- When the book is deleted successfully, the server should return a response with:
+  - Status Code: **200**
+  - Response Body:
+
+```json
+{
+  "status": "success",
+  "message": "Buku berhasil dihapus"
 }
 ```
