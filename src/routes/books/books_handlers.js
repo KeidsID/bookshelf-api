@@ -66,16 +66,46 @@ const addBookHdlr = (req, h) => {
   return response;
 };
 
-const fetchAllBooksHdlr = () => ({
-  status: 'success',
-  data: {
-    books: books.map((e) => {
-      const {id, name, publisher} = e;
+const fetchAllBooksHdlr = (req, h) => {
+  const {name} = req.query;
 
-      return {id, name, publisher};
-    }),
-  },
-});
+  if (books.length !== 0) {
+    if (name !== undefined) {
+      return {
+        status: 'success',
+        data: {
+          books: books.filter((e, i, arr) => {
+            const re = new RegExp(name, 'i');
+
+            return (e.name.search(re) !== -1) ? true : false;
+          }).map((e) => {
+            const {id, name, publisher} = e;
+
+            return {id, name, publisher};
+          }),
+        },
+      };
+    }
+
+    return {
+      status: 'success',
+      data: {
+        books: books.map((e) => {
+          const {id, name, publisher} = e;
+
+          return {id, name, publisher};
+        }),
+      },
+    };
+  }
+
+  return {
+    status: 'success',
+    data: {
+      books: [],
+    },
+  };
+};
 
 const fetchBookByIdHdlr = (req, h) => {
   const {id} = req.params;
