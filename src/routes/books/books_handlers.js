@@ -100,6 +100,66 @@ const fetchBookByIdHdlr = (req, h) => {
   return res;
 };
 
+const editBookByIdHdlr = (req, h) => {
+  const {id} = req.params;
+  const {
+    name, year, author, summary,
+    publisher, pageCount, readPage,
+    reading,
+  } = req.payload;
+
+  if (name == undefined) {
+    const res = h.response({
+      status: 'fail',
+      message: 'Gagal memperbarui buku. Mohon isi nama buku',
+    });
+    res.code(400);
+
+    return res;
+  }
+
+  if (readPage > pageCount) {
+    const res = h.response({
+      status: 'fail',
+      message: 'Gagal memperbarui buku. ' +
+        'readPage tidak boleh lebih besar dari pageCount',
+    });
+    res.code(400);
+
+    return res;
+  }
+
+  const updatedAt = new Date().toISOString();
+
+  const index = books.findIndex((e) => e.id === id);
+
+  if (index !== -1) {
+    books[index] = {
+      ...books[index],
+      name, year, author, summary,
+      publisher, pageCount, readPage,
+      reading, updatedAt,
+    };
+
+    const res = h.response({
+      status: 'success',
+      message: 'Buku berhasil diperbarui',
+    });
+    res.code(200);
+
+    return res;
+  }
+
+  const response = h.response({
+    status: 'fail',
+    message: 'Gagal memperbarui buku. Id tidak ditemukan',
+  });
+  response.code(404);
+
+  return response;
+};
+
 export {
   addBookHdlr, fetchAllBooksHdlr, fetchBookByIdHdlr,
+  editBookByIdHdlr,
 };

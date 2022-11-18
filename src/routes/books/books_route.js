@@ -1,5 +1,6 @@
 import {
   addBookHdlr, fetchAllBooksHdlr, fetchBookByIdHdlr,
+  editBookByIdHdlr,
 } from './books_handlers.js';
 
 const BOOKS_PATH = '/books';
@@ -19,6 +20,11 @@ const booksRoute = [
     method: 'GET',
     path: `${BOOKS_PATH}/{id}`,
     handler: fetchBookByIdHdlr,
+  },
+  {
+    method: 'PUT',
+    path: `${BOOKS_PATH}/{id}`,
+    handler: editBookByIdHdlr,
   },
 ];
 

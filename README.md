@@ -14,8 +14,8 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 
 - [x] API can store books ( **POST /books with JSON req body** )
 - [x] API can fetch all books ( **GET /books** )
-- [ ] API can fetch book detail ( **GET /books/{bookId}** )
-- [ ] API can change book data ( **PUT /books/{bookId}** )
+- [x] API can fetch book detail ( **GET /books/{bookId}** )
+- [x] API can change book data ( **PUT /books/{bookId}** )
 - [ ] API can delete book data ( **DELETE /books/{bookId}** )
 
 <h1 align="center">Task Detail</h1>
@@ -248,6 +248,17 @@ The API you create should be able to modify book data by **id** via the followin
 }
 ```
 
+- The **id** attached by the client is **not found** by the server. When this happens, the server responds with:
+  - Status Code: **404**
+  - Response Body:
+
+```json
+{
+  "status": "fail",
+  "message": "Gagal memperbarui buku. Id tidak ditemukan"
+}
+```
+
 - When the book is updated successfully, the server should return a response with:
   - Status Code: **200**
   - Response Body:
@@ -257,7 +268,7 @@ The API you create should be able to modify book data by **id** via the followin
   "status": "success",
   "message": "Buku berhasil diperbarui"
 }
-```
+````
 
 ## **5. API can delete book data**
 
