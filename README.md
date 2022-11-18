@@ -10,15 +10,23 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 
 [Postman collection and environment][postmantest] for testing this API
 
-<h1 align="center">Task Summary</h1>
+<h1 align="center">Tasks Summary</h1>
+
+### Mandatory Tasks
 
 - [x] API can store books ( **POST /books with JSON req body** )
 - [x] API can fetch all books ( **GET /books** )
 - [x] API can fetch book detail ( **GET /books/{bookId}** )
 - [x] API can change book data ( **PUT /books/{bookId}** )
-- [ ] API can delete book data ( **DELETE /books/{bookId}** )
+- [x] API can delete book data ( **DELETE /books/{bookId}** )
 
-<h1 align="center">Task Detail</h1>
+### Optional Tasks
+
+- [ ] API can fetch books by name ( **GET /books?name=query** )
+- [ ] API can fetch books by reading value ( **GET /books?reading=0** )
+- [ ] API can fetch books by finished value ( **GET /books?finished=1** )
+
+<h1 align="center">Tasks Detail</h1>
 
 ## **1. API can store books**
 
@@ -268,7 +276,7 @@ The API you create should be able to modify book data by **id** via the followin
   "status": "success",
   "message": "Buku berhasil diperbarui"
 }
-````
+```
 
 ## **5. API can delete book data**
 

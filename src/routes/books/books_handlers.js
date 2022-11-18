@@ -150,16 +150,42 @@ const editBookByIdHdlr = (req, h) => {
     return res;
   }
 
-  const response = h.response({
+  const res = h.response({
     status: 'fail',
     message: 'Gagal memperbarui buku. Id tidak ditemukan',
   });
-  response.code(404);
+  res.code(404);
 
-  return response;
+  return res;
+};
+
+const removeBookByIdHdlr = (req, h) => {
+  const {id} = req.params;
+
+  const index = books.findIndex((e) => e.id === id);
+
+  if (index !== -1) {
+    books.splice(index, 1);
+
+    const res = h.response({
+      status: 'success',
+      message: 'Buku berhasil dihapus',
+    });
+    res.code(200);
+
+    return res;
+  }
+
+  const res = h.response({
+    status: 'fail',
+    message: 'Buku gagal dihapus. Id tidak ditemukan',
+  });
+  res.code(404);
+
+  return res;
 };
 
 export {
   addBookHdlr, fetchAllBooksHdlr, fetchBookByIdHdlr,
-  editBookByIdHdlr,
+  editBookByIdHdlr, removeBookByIdHdlr,
 };
