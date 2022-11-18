@@ -1,7 +1,7 @@
 import {nanoid} from 'nanoid';
 import books from '../../books.js';
 
-const addBookHandler = (req, h) => {
+const addBookHdlr = (req, h) => {
   const {
     name, year, author, summary,
     publisher, pageCount, readPage,
@@ -30,12 +30,13 @@ const addBookHandler = (req, h) => {
   }
 
   const id = nanoid(16);
+  const finished = (readPage == pageCount) ? true : false;
   const insertedAt = new Date().toISOString();
   const updatedAt = insertedAt;
 
   const newBook = {
     id, name, year, author, summary,
-    publisher, pageCount, readPage,
+    publisher, pageCount, readPage, finished,
     reading, insertedAt, updatedAt,
   };
 
@@ -65,7 +66,7 @@ const addBookHandler = (req, h) => {
   return response;
 };
 
-const fetchAllBooksHandler = () => ({
+const fetchAllBooksHdlr = () => ({
   status: 'success',
   data: {
     books: books.map((e) => {
@@ -76,6 +77,29 @@ const fetchAllBooksHandler = () => ({
   },
 });
 
+const fetchBookByIdHdlr = (req, h) => {
+  const {id} = req.params;
+
+  const book = books.filter((e) => e.id === id)[0];
+
+  if (book !== undefined) {
+    return {
+      status: 'success',
+      data: {
+        book,
+      },
+    };
+  }
+
+  const res = h.response({
+    status: 'fail',
+    message: 'Buku tidak ditemukan',
+  });
+  res.code(404);
+
+  return res;
+};
+
 export {
-  addBookHandler, fetchAllBooksHandler,
+  addBookHdlr, fetchAllBooksHdlr, fetchBookByIdHdlr,
 };

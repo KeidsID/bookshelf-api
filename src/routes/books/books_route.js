@@ -1,5 +1,5 @@
 import {
-  addBookHandler, fetchAllBooksHandler,
+  addBookHdlr, fetchAllBooksHdlr, fetchBookByIdHdlr,
 } from './books_handlers.js';
 
 const BOOKS_PATH = '/books';
@@ -8,12 +8,17 @@ const booksRoute = [
   {
     method: 'POST',
     path: BOOKS_PATH,
-    handler: addBookHandler,
+    handler: addBookHdlr,
   },
   {
     method: 'GET',
     path: BOOKS_PATH,
-    handler: fetchAllBooksHandler,
+    handler: fetchAllBooksHdlr,
+  },
+  {
+    method: 'GET',
+    path: `${BOOKS_PATH}/{id}`,
+    handler: fetchBookByIdHdlr,
   },
 ];
 
