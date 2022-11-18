@@ -23,8 +23,11 @@ It is hoped that with this assignment, students can create a simple RESTful API 
 ### Optional Tasks
 
 - [x] API can fetch books by name ( **GET /books?name=query** )
-- [ ] API can fetch books by reading value ( **GET /books?reading=0** )
-- [ ] API can fetch books by finished value ( **GET /books?finished=1** )
+- [x] API can fetch books by reading value ( **GET /books?reading=0** )
+- [x] API can fetch books by finished value ( **GET /books?finished=1** )
+
+Note: 
+- For **reading** and **finished** query: 0 is **false**, and 1 is **true**
 
 <h1 align="center">Tasks Detail</h1>
 
